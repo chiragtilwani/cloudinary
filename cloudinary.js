@@ -9,3 +9,14 @@ cloudinary.config({
 })
 
 module.exports = cloudinary
+
+
+//in controller to upload file on cloudinary
+
+const { creatorId, desc, post } = req.body
+let result;
+try {
+   result = await cloudinary.uploader.upload(post, { folder: "socialMedia" })
+} catch (err) {
+   return next(new HttpError("Could not upload your post", 500))
+}
